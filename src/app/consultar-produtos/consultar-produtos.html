@@ -1,0 +1,46 @@
+<div class="card m-3 shadow"> 
+    <div class="card-body">
+
+      <h5>Consulta de Produtos</h5>
+      <p>Listagem de produtos cadastrados</p>
+
+      <button (click)="consultarProdutos()" class="btn btn-primary shadow">
+        Executar Consulta
+      </button>
+
+      <table class="table table-sm mt-3"> 
+        <thead> 
+          <tr> 
+            <th>Nome do produto</th> 
+            <th>Preço</th> 
+            <th>Quantidade</th>
+            <th>Descrição</th> 
+            <th>Ações</th> 
+          </tr> 
+        </thead> 
+        <tbody> 
+          <tr> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td></td> 
+            <td> 
+              <button class="btn btn-sm btn-primary shadow me-2"> 
+                Editar 
+              </button> 
+              <button class="btn btn-sm btn-danger shadow me-2"> 
+                Excluir 
+              </button> 
+            </td> 
+          </tr> 
+        </tbody>
+      <tfoot> 
+        <tr> 
+          <td colspan="5">
+            Total de produtos: 0 
+          </td> 
+        </tr> 
+      </tfoot> 
+      </table>
+  </div>  
+</div>
