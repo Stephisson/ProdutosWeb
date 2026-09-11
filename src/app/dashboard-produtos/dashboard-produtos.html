@@ -1,0 +1,26 @@
+<div class="card m-3 shadow">
+  <div class="card-body">
+    <h5>Dashboard de produtos</h5>
+    <p>Resumo de dados sobre os produtos cadastrados.</p>
+
+    <!-- Primeira linha de gráficos -->
+    <div class="row">
+      <div class="col">
+        <div [chart]="graficoColunas()"></div>
+      </div>
+      <div class="col">
+        <div [chart]="graficoDonut()"></div>
+      </div>
+    </div>
+
+    <!-- Segunda linha de gráficos -->
+    <div class="row">
+      <div class="col">
+        <div [chart]="graficoLinhas()"></div>
+      </div>
+      <div class="col">
+        <div [chart]="graficoBarras()"></div>
+      </div>
+    </div>
+  </div>
+</div>

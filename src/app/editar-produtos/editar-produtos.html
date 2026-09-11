@@ -1,1 +1,62 @@
-<p>editar-produtos works!</p>
+<div class="card m-3 shadow">
+  <div class="card-body">
+    <h5>Edição de produtos</h5>
+    <p>Formulário para edição de produtos.</p>
+
+    <div *ngIf="mensagem()" class="alert alert-success">
+      <strong>{{ mensagem() }}</strong>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="atualizarProduto()">
+        
+      <div class="mb-2">
+        <label>Nome do produto:</label>
+        <input
+          formControlName="nome"
+          type="text"
+          class="form-control"
+          placeholder="Digite o nome aqui"
+        />
+      </div>
+
+      <div class="mb-2">
+        <label>Preço do produto:</label>
+        <input
+          formControlName="preco"
+          type="text"
+          class="form-control"
+          placeholder="Digite o preço aqui"
+        />
+      </div>
+
+      <div class="mb-2">
+        <label>Quantidade do produto:</label>
+        <input
+          formControlName="quantidade"
+          type="text"
+          class="form-control"
+          placeholder="Digite a quantidade aqui"
+        />
+      </div>
+
+      <div class="mb-2">
+        <label>Descrição do produto:</label>
+        <textarea
+          formControlName="descricao"
+          class="form-control"
+          placeholder="Digite a descrição do produto"
+        ></textarea>
+      </div>
+
+      <div class="mb-2">
+        <button
+          [disabled]="formulario.invalid"
+          type="submit"
+          class="btn btn-primary shadow"
+        >
+          Salvar alterações
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

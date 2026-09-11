@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { CadastrarProdutos } from './cadastrar-produtos/cadastrar-produtos';
 import { ConsultarProdutos } from './consultar-produtos/consultar-produtos';
 import { EditarProdutos } from './editar-produtos/editar-produtos';
+import { DashboardProdutos } from './dashboard-produtos/dashboard-produtos';
 
 //Mapeamento das rotas da aplicação 
 export const routes: Routes = [ 
@@ -13,9 +14,12 @@ export const routes: Routes = [
         path: 'consultar-produtos',  //rota 
         component: ConsultarProdutos //componente 
     }, 
-    {   path: 'editar-produtos', //rota 
+    {   path: 'editar-produtos/:id', //rota 
         component: EditarProdutos //componente 
     }, 
+    {   path: 'dashboard-produtos', //rota 
+        component: DashboardProdutos //componente 
+    },
     {   path: '',   //rota padrão 
         redirectTo: '/consultar-produtos', //redirecionamento 
         pathMatch: 'full' //corresponde exatamente à rota vazia 

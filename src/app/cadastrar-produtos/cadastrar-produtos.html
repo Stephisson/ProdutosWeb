@@ -4,29 +4,33 @@
         <h5>Cadastro de produtos</h5> 
         <p>Formulário para inclusão de produtos.</p> 
 
-        <form> 
+        <div *ngIf="mensagem()" class="alert alert-success"> 
+            <strong>{{ mensagem() }}</strong> 
+        </div>
+
+        <form [formGroup]="formulario" (ngSubmit)="cadastrarProduto()"> 
             <div class="mb-2"> 
                 <label>Nome do produto:</label> 
-                <input type="text" class="form-control" placeholder="Digite o nome aqui"/> 
+                <input formControlName="nome" type="text" class="form-control" placeholder="Digite o nome aqui"/> 
             </div> 
             
             <div class="mb-2"> 
                 <label>Preço do produto:</label> 
-                <input type="text" class="form-control" placeholder="Digite o preço aqui"/> 
+                <input formControlName="preco" type="text" class="form-control" placeholder="Digite o preço aqui"/> 
             </div> 
             
             <div class="mb-2"> 
                 <label>Quantidade do produto:</label> 
-                <input type="text" class="form-control" placeholder="Digite a quantidade aqui"/> 
+                <input formControlName="quantidade" type="text" class="form-control" placeholder="Digite a quantidade aqui"/> 
             </div>
 
             <div class="mb-2"> 
                 <label>Descrição do produto:</label> 
-                <textarea class="form-control" placeholder="Digite a descrição do produto"></textarea> 
+                <textarea formControlName="descricao" class="form-control" placeholder="Digite a descrição do produto"></textarea> 
             </div> 
             
             <div class="mb-2"> 
-                <button type="submit" class="btn btn-success shadow"> 
+                <button [disabled]="formulario.invalid" type="submit" class="btn btn-success shadow"> 
                     Realizar cadastro 
                 </button> 
             </div> 

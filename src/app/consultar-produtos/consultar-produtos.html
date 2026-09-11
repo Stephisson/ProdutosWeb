@@ -4,43 +4,66 @@
       <h5>Consulta de Produtos</h5>
       <p>Listagem de produtos cadastrados</p>
 
-      <button (click)="consultarProdutos()" class="btn btn-primary shadow">
-        Executar Consulta
-      </button>
+      <div *ngIf="mensagem()" class="alert alert-primary d-flex 
+          align-items-center" role="alert"> 
+          <div class="spinner-border spinner-border-sm me-2" 
+              role="status" aria-hidden="true">
+          </div> 
+          
+          <div> 
+            {{ mensagem() }} 
+          </div> 
+      </div>
 
-      <table class="table table-sm mt-3"> 
-        <thead> 
-          <tr> 
-            <th>Nome do produto</th> 
-            <th>Preço</th> 
-            <th>Quantidade</th>
-            <th>Descrição</th> 
-            <th>Ações</th> 
-          </tr> 
-        </thead> 
-        <tbody> 
-          <tr> 
-            <td></td> 
-            <td></td> 
-            <td></td> 
-            <td></td> 
-            <td> 
-              <button class="btn btn-sm btn-primary shadow me-2"> 
-                Editar 
-              </button> 
-              <button class="btn btn-sm btn-danger shadow me-2"> 
-                Excluir 
-              </button> 
-            </td> 
-          </tr> 
-        </tbody>
-      <tfoot> 
-        <tr> 
-          <td colspan="5">
-            Total de produtos: 0 
-          </td> 
-        </tr> 
-      </tfoot> 
-      </table>
+      <div class="table-responsive"> 
+        <table *ngIf="produtos().length > 0" class="table table-sm mt-3"> 
+          <thead> 
+            <tr> 
+              <th>Nome do produto</th> 
+              <th>Preço</th>
+              <th>Quantidade</th> 
+              <th>Total</th> 
+              <th>Descrição</th> 
+              <th>Data de cadastro</th> 
+              <th width="140">Ações</th> 
+            </tr> 
+          </thead> 
+          <tbody> 
+            <tr *ngFor="let p of produtos() | paginate : { itemsPerPage: 5, currentPage : pagina }"> 
+              <td>{{ p.nome | uppercase }}</td> 
+              <td>{{ p.preco | currency: 'BRL' }}</td> 
+              <td>{{ p.quantidade }}</td> 
+              <td>{{ p.preco * p.quantidade | currency : 'BRL' }}</td> 
+              <td>{{ p.descricao }}</td> 
+              <td>{{ p.dataCadastro | date : 'dd/MM/yy HH:mm' }}</td>
+              <td> 
+                <button [routerLink]="['/editar-produtos', p.id]" 
+                  class="btn btn-sm btn-primary shadow me-2"> 
+                  Editar 
+                </button> 
+                <button (click)="excluirProduto(p.id)" 
+                  class="btn btn-sm btn-danger shadow me-2"> 
+                  Excluir 
+                </button> 
+              </td> 
+            </tr> 
+          </tbody> 
+          <tfoot> 
+            <tr> 
+              <td colspan="5"> 
+                Total de produtos: {{ produtos().length }} 
+              </td> 
+            </tr> 
+          </tfoot> 
+        </table> 
+      </div>
+
+      <div class="text-center"> 
+        <pagination-controls 
+          previousLabel="Página anterior" 
+          nextLabel="Próxima página" 
+          (pageChange)="pageChange($event)" 
+          /> 
+      </div>
   </div>  
 </div>
